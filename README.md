@@ -1,4 +1,4 @@
 qt
 ==
 
-QT Projects
+QT C++ Projects
