@@ -14,11 +14,10 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
     Config::imageFormat = "jpg";
-    Config::hostName = "ftp://your_ftp_server.com";
-    Config::hostUsername = "username";
-    Config::hostPassword = "password";
-    //hostURL => The root of the link from where uploaded files can be downloaded
-    Config::hostURL = "http://your.cdn_url.com/";
+    Config::hostName = "ftp://HOST.com";
+    Config::hostUsername = "USERNAME";
+    Config::hostPassword = "PASSWORD";
+    Config::hostURL = "http://cdn.HOST.com/";
 
     Uploader* upl = new Uploader(this);
     upl->run();

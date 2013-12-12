@@ -13,9 +13,7 @@ public:
     static QString hostUsername;
     static QString hostPassword;
     static QString hostURL;
-
     static QString imageFormat;
-
 signals:
 
 public slots:

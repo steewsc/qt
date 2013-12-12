@@ -16,7 +16,6 @@ public:
     QString clipboardName;
     void run();
     QNetworkAccessManager *uploadman;
-    QByteArray receivedData;
     QString uploadedName;
 
 private:

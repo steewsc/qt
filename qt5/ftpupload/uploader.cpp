@@ -35,8 +35,8 @@ void Uploader::doCleaning(){
     if( !this->isUploading && ImageHolder::getImageCount() == 0 && this->shouldClean ){
         if( this->_netRep != NULL ){
             this->shouldClean = false;
-            qDebug() << "doCleaning started";
             this->_netRep->deleteLater();
+            ImageHolder::imageCleaning();
         }
     }
 }
@@ -49,7 +49,8 @@ void Uploader::dataError(QNetworkReply::NetworkError){
 }
 
 void Uploader::dataSent(){
-    qDebug() << "DATA SENT to the server. Download link: " << QString( Config::hostURL + this->uploadedName ) ;
+    this->clipboardName = QString( Config::hostURL + this->uploadedName );
+    qDebug() << "DATA SENT to the server. Download link: " << this->clipboardName;
     ImageHolder::removeImg();
     this->isUploading = false;
     timPostpone->start(500);
@@ -64,11 +65,8 @@ void Uploader::uploadNext(){
     this->isUploading = true;
     this->shouldClean = true;
     this->uploadedName = ImageHolder::getCryptedNameWithFormat();
-
     QNetworkRequest upload( this->setupURL() );
-
     this->_netRep = this->uploadman->put( upload, ImageHolder::getBytesForUpload() );
-
     this->connectSignals();
 }
 
